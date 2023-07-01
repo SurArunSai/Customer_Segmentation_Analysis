@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Visualization</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('main_page') }}">PCA</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <div class="mt-3"> 
+        <center><h1>Bank Marketing Data Clusters Dashboard</h1></center>
+    </div>
+
+    <div class="container-fluid d-flex justify-content-center align-items-center mt-3">
+        <form method="POST" action="/">
+            {{ form.csrf_token }}
+            {{ form.input_number.label }} {{ form.input_number }}
+            {{ form.input_iterations.label }} {{ form.input_iterations }}
+            {{ form.submit(class="btn btn-outline-primary") }}
+        </form>
+    </div>
+
+    <div class="container-fluid mt-5">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="container-fluid">
+              <h2>Customers Per Cluster</h2>
+              {{ plot_count_clusters_html|safe }}
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                Top 10 Rows in the Data After Applying Clusters 
+                <div class="card-body table-container">
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        {{ table|safe }}
+                      </table>
+                    </div>
+                  </div>
+                </div>
+          </div>
+        </div>
+      </div>
+            
+      
+
+    <div class="container-fluid">
+        <h2>Count of Age by Clusters Category</h2>
+        {{ plot_count_cluster_by_age_html|safe }}
+    </div>
+
+    <div class="container-fluid">
+        <h2>Count of Job by Clusters Category</h2>
+        {{ plot_count_clusters_by_job_html|safe }}
+    </div>
+
+    <div class="container-fluid">
+        <h2>Count of Marital by Clusters Category</h2>
+        {{ plot_count_clusters_by_marital_html|safe }}
+    </div>
+
+
+    <div class="container-fluid">
+        <h2>Count of Education by Clusters Category</h2>
+        {{ plot_count_clusters_by_education_html|safe }}
+    </div>
+
+    <div class="container-fluid">
+        <h2>Count of Default by Clusters Category</h2>
+        {{ plot_count_clusters_by_default_html|safe }}
+    </div>
+
+    <div class="container-fluid">
+        <h2>Count of Housing by Clusters Category</h2>
+        {{ plot_count_clusters_by_housing_html|safe }}
+    </div>
+
+    <div class="container-fluid">
+        <h2>Count of Loan Status by Clusters Category</h2>
+        {{ plot_count_clusters_by_y_html|safe }}
+    </div>
+
+    <h2>Sunburst Graph Chart</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <!-- Plot 1 -->
+          <div class="plot">
+            {{ plot_cluster_tree_html|safe }}
+          </div>
+        </div>
+        <div class="col-md-4">
+          <!-- Plot 2 -->
+          <div class="plot">
+            {{ plot_cluster_tree_1_html|safe }}
+          </div>
+        </div>
+        <div class="col-md-4">
+          <!-- Plot 3 -->
+          <div class="plot">
+            {{ plot_cluster_tree_2_html|safe }}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="container-fluid">
+        <h2>Parallel Coordinates Plot</h2>
+        {{ plot_parallel_html|safe }}
+    </div>
+</body>
+</html>
